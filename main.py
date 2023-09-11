@@ -18,10 +18,8 @@ class ContentGenerator:
         self.data = data
 
     def generate_content(self):
-        generated_content = []
-        for data_item in self.data:
-            generated_text = self.generate_text(data_item)
-            generated_content.append(generated_text)
+        generated_content = [self.generate_text(
+            data_item) for data_item in self.data]
         return generated_content
 
     def generate_text(self, data):
@@ -66,8 +64,7 @@ websites = ['https://example.com']
 scraped_data = []
 for website_url in websites:
     website = Website(website_url)
-    data = website.scrape_data()
-    scraped_data.extend(data)
+    scraped_data.extend(website.scrape_data())
 
 # Step 2: Content Generation
 content_generator = ContentGenerator(scraped_data)
